@@ -36,6 +36,18 @@ namespace FizzBuzz
                         string second_message = message.Substring(index, message.Length - first_message.Length);
                         message = first_message + "Fezz" + second_message;
                     }
+                if (i % 17 == 0 && !String.IsNullOrEmpty(message)) 
+                {
+                    string reversed_message = "";
+                    int pos = message.Length;
+                    while(pos != 0)
+                    {
+                        reversed_message += message.Substring(pos - 4, 4);
+                        pos -= 4;
+                    }
+                    message = reversed_message;
+                }
+
 
                 if (String.IsNullOrEmpty(message))
                     Console.WriteLine(i);
