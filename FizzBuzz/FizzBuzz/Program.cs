@@ -6,7 +6,10 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 255; i++)
+            Console.WriteLine("Write maximum number : ");
+            string max;
+            max = Console.ReadLine();
+            for (int i = 1; i <= Int64.Parse(max); i++) 
             {
                 string message = "";
                 if (i % 3 == 0)
