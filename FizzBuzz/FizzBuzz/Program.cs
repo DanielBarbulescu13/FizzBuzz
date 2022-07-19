@@ -16,12 +16,12 @@ namespace FizzBuzz
         Flags setFlags(string[] args)
         {
             Flags flags = new Flags();
-            for(int i=0;i<args.Length;i++)
+            for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "3")
                     flags.three = true;
                 else if (args[i] == "7")
-                        flags.seven = true;
+                    flags.seven = true;
                 else if (args[i] == "5")
                     flags.five = true;
                 else if (args[i] == "11")
@@ -41,7 +41,7 @@ namespace FizzBuzz
             Console.WriteLine("Write maximum number : ");
             string max;
             max = Console.ReadLine();
-            for (int i = 1; i <= Int64.Parse(max); i++) 
+            for (int i = 1; i <= Int64.Parse(max); i++)
             {
                 string message = "";
                 if (i % 3 == 0 && flags.three)
@@ -59,7 +59,7 @@ namespace FizzBuzz
                     else message += "Bang";
                 if (i % 11 == 0 && flags.eleven)
                     message = "Bong";
-                if(i % 13 ==0 && flags.thirteen)
+                if (i % 13 == 0 && flags.thirteen)
                     if (String.IsNullOrEmpty(message))
                         message = "Fezz";
                     else if (!message.Contains('B'))
@@ -71,11 +71,11 @@ namespace FizzBuzz
                         string second_message = message.Substring(index, message.Length - first_message.Length);
                         message = first_message + "Fezz" + second_message;
                     }
-                if (i % 17 == 0 && !String.IsNullOrEmpty(message) && flags.seventeen) 
+                if (i % 17 == 0 && !String.IsNullOrEmpty(message) && flags.seventeen)
                 {
                     string reversed_message = "";
                     int pos = message.Length;
-                    while(pos != 0)
+                    while (pos != 0)
                     {
                         reversed_message += message.Substring(pos - 4, 4);
                         pos -= 4;
