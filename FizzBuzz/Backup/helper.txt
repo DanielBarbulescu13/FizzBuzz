@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +117,33 @@ namespace FizzBuzz
             }
 
             Console.WriteLine("One-Liner ... ");
+
+            //Fizz - > 3
+            //Buzz - > 5
+            //Bang - > 7
+
+            //rewritten code more suitable for inline ifs : 
+
+            //if (i % 3 == 0)
+            //{
+            //    if (i % 5 == 0 && i % 7 == 0)
+            //        message = "FizzBuzzBang";
+            //    else  if (i % 5 == 0)
+            //        message = "FizzBuzz";
+            //    else if (i % 7 == 0)
+            //          message = "FizzBang"
+            //    else
+            //        message = "Fizz";
+            //}
+            //else if (i % 5 == 0)
+            //  { if (i % 7 == 0)
+            //          message = "BuzzBang";
+            //    else
+            //          message = "Buzz"
+            //  }
+            //else if (i % 7 == 0)
+            //    message = "Bang";
+            //else message = i.ToString();
 
             IEnumerable fizzbuzzED = Enumerable.Range(1, Int32.Parse(max)).Select(x => x % 3 == 0 ? (x % 5 == 0 && x % 7 == 0 ? "FizzBuzzBang" : (x % 5 == 0 ? "FizzBuzz" : (x % 7 == 0 ? "FizzBang" : "Fizz"))) : (x % 5 == 0 ? (x % 7 == 0 ? "BuzzBang" : "Buzz") : (x % 7 == 0 ? "Bang" : x.ToString())));
 
