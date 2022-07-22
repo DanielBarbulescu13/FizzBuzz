@@ -4,13 +4,8 @@ using System.Text;
 
 namespace FizzBuzz
 {
-    public class Rule
+    public abstract class Rule
     {
-        public bool three = false;
-        public bool five = false;
-        public bool seven = false;
-        public bool eleven = false;
-        public bool thirteen = false;
-        public bool seventeen = false;
+        public abstract void ApplyRule(string manipulate_this);
     }
 }

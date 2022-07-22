@@ -7,50 +7,25 @@ namespace FizzBuzz
 {
     public class Program
     {
-        public string FizzBuzzLogic(int i, Rule Rule)
+        public List<Rule> rules_list;
+
+        public Program()
+        {
+            rules_list = new List<Rule>();
+        }
+        public string FizzBuzzLogic(int i)
         {
             string message = "";
-            if (i % 3 == 0 && Rule.three)
-            {
-                if (i % 5 == 0 && Rule.five)
-                    message = "FizzBuzz";
-                else
-                    message = "Fizz";
-            }
-            else if (i % 5 == 0 && Rule.five)
-                message = "Buzz";
-            if (i % 7 == 0 && Rule.seven)
-                if (String.IsNullOrEmpty(message))
-                    message = "Bang";
-                else message += "Bang";
-            if (i % 11 == 0 && Rule.eleven)
-                message = "Bong";
-            if (i % 13 == 0 && Rule.thirteen)
-                if (String.IsNullOrEmpty(message))
-                    message = "Fezz";
-                else if (!message.Contains('B'))
-                    message += "Fezz";
-                else
-                {
-                    int index = message.IndexOf('B');
-                    string first_message = message.Substring(0, index);
-                    string second_message = message.Substring(index, message.Length - first_message.Length);
-                    message = first_message + "Fezz" + second_message;
-                }
-            if (i % 17 == 0 && !String.IsNullOrEmpty(message) && Rule.seventeen)
-            {
-                string reversed_message = "";
-                int pos = message.Length;
-                while (pos != 0)
-                {
-                    reversed_message += message.Substring(pos - 4, 4);
-                    pos -= 4;
-                }
-                message = reversed_message;
-            }
-
-            if (String.IsNullOrEmpty(message))
+            
+            if (rules_list.Count==0)
                 message = i.ToString();
+            else
+            {
+                foreach (var current_rule in rules_list)
+                {
+                    current_rule.ApplyRule(message);
+                }
+            }
 
             return message;
         }
@@ -58,19 +33,19 @@ namespace FizzBuzz
         static void Main(string[] args)
         {
             var program = new Program();
-            Rule Rule = program.setRule(args);
+            program.setRulesList(args);
             string max = program.getIterations();
 
             for (int i = 1; i <= Int64.Parse(max); i++)
             {
-                string message = program.FizzBuzzLogic(i, Rule);
+                string message = program.FizzBuzzLogic(i);
 
                 Console.WriteLine(message);
             }
 
             Console.WriteLine("Using IEnumerable ... ");
 
-            var fizzBuzzer = new FizzBuzz(max, Rule, program);
+            var fizzBuzzer = new FizzBuzz(max, program);
 
             foreach (var value in fizzBuzzer)
             {
@@ -87,38 +62,35 @@ namespace FizzBuzz
             }
 
         }
-        private Rule setRule(string[] args)
+        private void setRulesList(string[] args)
         {
-            Rule Rule = new Rule();
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "3")
                 {
-                    Rule.three = true;
+                    rules_list.Add(new Rule3());
                 }
                 else if (args[i] == "7")
                 {
-                    Rule.seven = true;
+                    rules_list.Add(new Rule7());
                 }
                 else if (args[i] == "5")
                 {
-                    Rule.five = true;
+                    rules_list.Add(new Rule3());
                 }
                 else if (args[i] == "11")
                 {
-                    Rule.eleven = true;
+                    rules_list.Add(new Rule11());
                 }
                 else if (args[i] == "13")
                 {
-                    Rule.thirteen = true;
+                    rules_list.Add(new Rule13());
                 }
                 else if (args[i] == "17")
                 {
-                    Rule.seventeen = true;
+                    rules_list.Add(new Rule17());
                 }
             }
-
-            return Rule;
         }
 
         private string getIterations()

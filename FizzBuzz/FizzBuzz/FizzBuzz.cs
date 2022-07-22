@@ -9,13 +9,13 @@ namespace FizzBuzz
     {
         private string[] fizzbuzzED;
 
-        public FizzBuzz(string max, Rule Rule, Program program)
+        public FizzBuzz(string max, Program program)
         {
             fizzbuzzED = new string[Int64.Parse(max)];
 
             for (int i = 1; i <= Int64.Parse(max); i++)
             {
-                string message = program.FizzBuzzLogic(i, Rule);
+                string message = program.FizzBuzzLogic(i);
 
                 fizzbuzzED[i - 1] = message;
             }
