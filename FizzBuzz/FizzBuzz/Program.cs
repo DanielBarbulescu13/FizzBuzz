@@ -91,6 +91,7 @@ namespace FizzBuzz
                     rules_list.Add(new Rule17());
                 }
             }
+
         }
 
         private string getIterations()
